@@ -36,6 +36,16 @@ namespace type {
         using ret = typename baseType<T>::ret;
     };
 
+    template<typename T1, typename T2>
+    struct baseType< product<T1, T2> > {
+        using ret = typename baseType<
+            product<
+                typename baseType<T1>::ret,
+                typename baseType<T2>::ret
+            >
+        >::ret;
+    };
+
     template<typename T1, typename T2, typename T3>
     struct baseType < product<sum<T1, T2>, T3> > {
         using ret = typename baseType<
